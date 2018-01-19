@@ -49,6 +49,7 @@ public class DistributedLock implements Watcher {
                         DistributedLock dc = new DistributedLock(threadId);
                         dc.createConnection(CONNECTION_STRING, SESSION_TIMEOUT);
                         //GROUP_PATH不存在的话，由一个线程创建即可；
+                        //可不加锁,zk创建节点是阻塞的,无并发问题
                         //synchronized (threadSemaphore){
                             dc.createPath(GROUP_PATH, "该节点由线程" + threadId + "创建", true);
                         //}
