@@ -10,6 +10,12 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by jdd on 2018/1/19.
+ 这里利用zookeeper的EPHEMERAL_SEQUENTIAL类型节点及watcher机制，来简单实现分布式锁。
+ 主要思想：
+ 1、开启10个线程，在disLocks节点下各自创建名为sub的EPHEMERAL_SEQUENTIAL节点；
+ 2、获取disLocks节点下所有子节点，排序，如果自己的节点编号最小，则获取锁；
+ 3、否则watch排在自己前面的节点，监听到其删除后，进入第2步（重新检测排序是防止监听的节点发生连接失效，导致的节点删除情况）；
+ 4、删除自身sub节点，释放连接；
  */
 public class DistributedLock implements Watcher {
 
