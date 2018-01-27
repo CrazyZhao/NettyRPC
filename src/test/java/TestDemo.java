@@ -118,9 +118,9 @@ public class TestDemo {
         }*/
 
         LeftMoneyPackage leftMoneyPackage = new LeftMoneyPackage();
-        leftMoneyPackage.setRemainMoney(1000.00); //原始100000
-        leftMoneyPackage.setRemainSize(3);
-        for (int i =0;i<3;i++){
+        leftMoneyPackage.setRemainMoney(10.0); //原始100000
+        leftMoneyPackage.setRemainSize(10);
+        for (int i =0;i<10;i++){
             System.out.println(BigDecimal.valueOf(getRandomMoney(leftMoneyPackage)).multiply(new BigDecimal(100)).toBigInteger());
         }
 
@@ -173,10 +173,10 @@ public class TestDemo {
             return (double) Math.round(_leftMoneyPackage.remainMoney * 100) / 100;
         }
         Random r     = new Random();
-        double min   = 0.01; //
+        double min   = 0.50; //
         double max   = _leftMoneyPackage.remainMoney / _leftMoneyPackage.remainSize * 2;
         double money = r.nextDouble() * max;
-        money = money <= min ? 0.01: money;
+        money = money <= min ? min: money;
         money = Math.floor(money * 100) / 100;
         _leftMoneyPackage.remainSize--;
         _leftMoneyPackage.remainMoney -= money;
