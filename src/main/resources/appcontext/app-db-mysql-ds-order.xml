@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+">
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write}"></property>
+		<property name="username" value="${username.write}"></property>
+		<property name="password" value="${password.write}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />  
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read}"></property>
+		<property name="username" value="${username.read}"></property>
+		<property name="password" value="${password.read}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />  
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite0" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write0}"></property>
+		<property name="username" value="${username.write0}"></property>
+		<property name="password" value="${password.write0}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead0" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read0}"></property>
+		<property name="username" value="${username.read0}"></property>
+		<property name="password" value="${password.read0}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite1" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write1}"></property>
+		<property name="username" value="${username.write1}"></property>
+		<property name="password" value="${password.write1}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead1" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read1}"></property>
+		<property name="username" value="${username.read1}"></property>
+		<property name="password" value="${password.read1}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite2" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write2}"></property>
+		<property name="username" value="${username.write2}"></property>
+		<property name="password" value="${password.write2}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead2" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read2}"></property>
+		<property name="username" value="${username.read2}"></property>
+		<property name="password" value="${password.read2}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite3" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write3}"></property>
+		<property name="username" value="${username.write3}"></property>
+		<property name="password" value="${password.write3}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead3" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read3}"></property>
+		<property name="username" value="${username.read3}"></property>
+		<property name="password" value="${password.read3}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite4" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write4}"></property>
+		<property name="username" value="${username.write4}"></property>
+		<property name="password" value="${password.write4}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead4" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read4}"></property>
+		<property name="username" value="${username.read4}"></property>
+		<property name="password" value="${password.read4}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite5" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write5}"></property>
+		<property name="username" value="${username.write5}"></property>
+		<property name="password" value="${password.write5}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead5" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read5}"></property>
+		<property name="username" value="${username.read5}"></property>
+		<property name="password" value="${password.read5}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite6" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write6}"></property>
+		<property name="username" value="${username.write6}"></property>
+		<property name="password" value="${password.write6}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead6" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read6}"></property>
+		<property name="username" value="${username.read6}"></property>
+		<property name="password" value="${password.read6}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite7" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write7}"></property>
+		<property name="username" value="${username.write7}"></property>
+		<property name="password" value="${password.write7}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead7" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read7}"></property>
+		<property name="username" value="${username.read7}"></property>
+		<property name="password" value="${password.read7}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite8" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write8}"></property>
+		<property name="username" value="${username.write8}"></property>
+		<property name="password" value="${password.write8}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead8" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read8}"></property>
+		<property name="username" value="${username.read8}"></property>
+		<property name="password" value="${password.read8}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceWrite9" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.write9}"></property>
+		<property name="username" value="${username.write9}"></property>
+		<property name="password" value="${password.write9}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="filters" value="stat" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+	<!-- Druid连接池 -->
+	<bean name="dataSourceRead9" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"></property>
+		<property name="url" value="${url.read9}"></property>
+		<property name="username" value="${username.read9}"></property>
+		<property name="password" value="${password.read9}"></property>
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="filters" value="stat" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="600" />
+		<property name="logAbandoned" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="useUnfairLock" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="connectionInitSqls" value="set names utf8mb4;" />
+	</bean>
+</beans>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+">
+	<bean id="multipleDataSource" class="com.zbl.nettyrpc.db.MultipleDataSource">
+		<!-- 默认数据库是写的数据库 -->
+		<property name="defaultTargetDataSource" ref="dataSourceWrite" />
+		<property name="targetDataSources">
+			<map>
+				<entry value-ref="dataSourceWrite" key="dataSourceWrite" />
+				<entry value-ref="dataSourceRead" key="dataSourceRead" />
+				<entry value-ref="dataSourceWrite0" key="dataSourceWrite0" />
+				<entry value-ref="dataSourceRead0" key="dataSourceRead0" />
+				<entry value-ref="dataSourceWrite1" key="dataSourceWrite1" />
+				<entry value-ref="dataSourceRead1" key="dataSourceRead1" />
+				<entry value-ref="dataSourceWrite2" key="dataSourceWrite2" />
+				<entry value-ref="dataSourceRead2" key="dataSourceRead2" />
+				<entry value-ref="dataSourceWrite3" key="dataSourceWrite3" />
+				<entry value-ref="dataSourceRead3" key="dataSourceRead3" />
+				<entry value-ref="dataSourceWrite4" key="dataSourceWrite4" />
+				<entry value-ref="dataSourceRead4" key="dataSourceRead4" />
+				<entry value-ref="dataSourceWrite5" key="dataSourceWrite5" />
+				<entry value-ref="dataSourceRead5" key="dataSourceRead5" />
+				<entry value-ref="dataSourceWrite6" key="dataSourceWrite6" />
+				<entry value-ref="dataSourceRead6" key="dataSourceRead6" />
+				<entry value-ref="dataSourceWrite7" key="dataSourceWrite7" />
+				<entry value-ref="dataSourceRead7" key="dataSourceRead7" />
+				<entry value-ref="dataSourceWrite8" key="dataSourceWrite8" />
+				<entry value-ref="dataSourceRead8" key="dataSourceRead8" />
+				<entry value-ref="dataSourceWrite9" key="dataSourceWrite9" />
+				<entry value-ref="dataSourceRead9" key="dataSourceRead9" />
+			</map>
+		</property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="multipleDataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>  
+                <prop key="hibernate.cache.use_second_level_cache">false</prop> 
+                 <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>  
+			</props>
+		</property>
+		<!-- 注解方式配置 -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.zbl.nettyrpc.dao.entity</value>
+			</list>
+		</property>
+		<!-- hbm方式配置 -->
+		<!--<property name="mappingDirectoryLocations"> <list> <value>classpath:com/agileeagle/gf/pojo/hbm</value> 
+			</list> </property> -->
+	</bean>
+	<!-- 配置事务 -->
+	<bean name="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"  proxy-target-class="true" order="2"/>
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+         http://www.springframework.org/schema/task
+         http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+    <import resource="app-disconf-order.xml" />
+    <import resource="app-db-mysql-order.xml" />
+    <import resource="app-spring-bean-order.xml" />
+    <import resource="app-db-mysql-ds-order.xml"/>
+
+    <context:component-scan base-package="com.zbl.nettyrpc.service" />
+    <context:component-scan base-package="com.zbl.nettyrpc.dao" />
+    <!-- 动态数据源aop -->
+    <bean id="dataSourceExchange" class="com.zbl.nettyrpc.db.DsExchange" />
+
+    <aop:config>
+        <aop:pointcut id="transactionPointCut"
+                      expression="execution(* com.zbl.nettyrpc..*.*(..))" />
+        <aop:advisor advice-ref="dataSourceExchange" pointcut-ref="transactionPointCut"
+                     order="1" />
+    </aop:config>
+    <!--<bean class="com.jdd.fm.core.utils.SpringContextUtil" lazy-init="false"/>-->
+
+    <!--<bean id="initConfig" class="com.jdd.fm.core.servlet.InitConfig" init-method="init">-->
+        <!--<property name="initPackge" value="${order.initPackge}" />-->
+    <!--</bean>-->
+
+    <!--<bean id="scannerConfig" class="com.jdd.fm.core.annotations.scn.Scanner" init-method="init">-->
+        <!--<property name="packageName" value="com.databiger.order.api.controller" />-->
+    <!--</bean>-->
+</beans>

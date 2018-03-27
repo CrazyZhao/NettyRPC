@@ -8,6 +8,10 @@
 .idea/libraries/Maven__junit_junit_3_8_1.xml
 .idea/libraries/Maven__jline_jline_0_9_94.xml
 .idea/libraries/Maven__com_alibaba_fastjson_1_2_5.xml
+.idea/libraries/
+.idea/artifacts
+logs/
+disconf/download
 target/
 logs/notify-subscription.log
 .idea/uiDesigner.xml
