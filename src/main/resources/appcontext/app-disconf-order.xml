@@ -17,7 +17,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <bean id="disconfMgrBean" class="com.baidu.disconf.client.DisconfMgrBean"
           destroy-method="destroy">
-        <property name="scanPackage" value="com.jdd"/>
+        <property name="scanPackage" value="com.zbl"/>
     </bean>
     <bean id="disconfMgrBean2" class="com.baidu.disconf.client.DisconfMgrBeanSecond"
           init-method="init" destroy-method="destroy">
@@ -29,8 +29,9 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     <property name="locations">
         <list>
             <value>classpath:prop-db-mysql-order.properties</value>
-            <value>classpath:prop-cache-redis-order.properties</value>
-            <value>classpath:prop-common-config.properties</value>
+            <!--<value>classpath:prop-cache-redis-order.properties</value>-->
+            <!--<value>classpath:prop-common-config.properties</value>-->
+
             <!--<value>classpath:prop-mq-activeMq.properties</value>-->
             <!--<value>classpath:zoo.properties</value>-->
         </list>
