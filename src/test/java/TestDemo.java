@@ -1,10 +1,7 @@
-import com.alibaba.fastjson.JSONObject;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import com.zbl.nettyrpc.dao.entity.Student;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,21 +25,44 @@ public class TestDemo {
             this.ob = ob;
         }
 
-        public void showType(){
+        public void showType() {
             System.out.println("T的实际类型是：" + ob.getClass().getName());
         }
     }
 
     /**
      * 泛型方法:只需将泛型参数列表置于返回值前
+     *
      * @param x
      * @param <T>
      */
-    public <T> void f(T x){
+    public <T> void f(T x) {
         System.out.println(x.getClass().getName());
     }
 
+    /**
+     * 注意String、Integer等包装类是不可变类型的，所以这边作为方法参数时，方法内对参数的修改会新建对象指向新的地址，不会影响原内存地址中的值。
+     * @param data
+     */
+    static void add(Integer data){
+        data += new Integer(1);
+    }
+
     public static void main(String[] args) {
+
+        /*Integer a = new Integer(1440);
+        add(a);
+        System.out.println(a);*/
+
+        Student b = new Student(2);
+        Student c = new Student(2);
+        Map map = new HashMap<Student, Integer>();
+        map.put(b, 1);
+        map.put(c, 2);
+        System.out.println(b == c);
+        System.out.println(b.equals(c));
+
+
         /*Test<Integer> intOb = new Test<Integer>(88);
         intOb.showType();
         int i = intOb.getOb();
@@ -117,29 +137,26 @@ public class TestDemo {
             System.out.println(a);
         }*/
 
-        LeftMoneyPackage leftMoneyPackage = new LeftMoneyPackage();
+        /*LeftMoneyPackage leftMoneyPackage = new LeftMoneyPackage();
         leftMoneyPackage.setRemainMoney(10.0); //原始100000
         leftMoneyPackage.setRemainSize(10);
-        for (int i =0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             System.out.println(BigDecimal.valueOf(getRandomMoney(leftMoneyPackage)).multiply(new BigDecimal(100)).toBigInteger());
-        }
+        }*/
 
     }
 
     /**
-     *
      * @param s
      * @return 获得链接
      */
-    public static List<String> getLink(final String s)
-    {
+    public static List<String> getLink(final String s) {
         String regex;
         final List<String> list = new ArrayList<String>();
         regex = "(<a[\\\\s+]*([^>h]|h(?!ref\\b))*href[\\\\s+]*=[\\\\s+]*[('|\")]?)([^(\\\\s+|'|\")]*)([^>]*>)";
         final Pattern pa = Pattern.compile(regex, Pattern.DOTALL);
         final Matcher ma = pa.matcher(s);
-        while (ma.find())
-        {
+        while (ma.find()) {
             list.add(ma.group());
         }
         return list;
@@ -172,11 +189,11 @@ public class TestDemo {
             _leftMoneyPackage.remainSize--;
             return (double) Math.round(_leftMoneyPackage.remainMoney * 100) / 100;
         }
-        Random r     = new Random();
-        double min   = 0.50; //
-        double max   = _leftMoneyPackage.remainMoney / _leftMoneyPackage.remainSize * 2;
+        Random r = new Random();
+        double min = 0.50; //
+        double max = _leftMoneyPackage.remainMoney / _leftMoneyPackage.remainSize * 2;
         double money = r.nextDouble() * max;
-        money = money <= min ? min: money;
+        money = money <= min ? min : money;
         money = Math.floor(money * 100) / 100;
         _leftMoneyPackage.remainSize--;
         _leftMoneyPackage.remainMoney -= money;
