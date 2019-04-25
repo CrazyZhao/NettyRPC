@@ -1,11 +1,12 @@
 package protocol;
 
-import com.zbl.nettyrpc.netty.protocol.LoginRequestPacket;
+import com.zbl.nettyrpc.netty.protocol.request.LoginRequestPacket;
 import com.zbl.nettyrpc.netty.protocol.Packet;
 import com.zbl.nettyrpc.netty.protocol.PacketCodeC;
 import com.zbl.nettyrpc.netty.serialize.Serializer;
 import com.zbl.nettyrpc.netty.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,12 +22,12 @@ public class PacketCodeCTest {
         LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
 
         loginRequestPacket.setVersion(((byte) 1));
-        loginRequestPacket.setUserId(123);
+        loginRequestPacket.setUserId("123");
         loginRequestPacket.setUsername("zhangsan");
         loginRequestPacket.setPassword("password");
 
         PacketCodeC packetCodeC = new PacketCodeC();
-        ByteBuf byteBuf = packetCodeC.encode(loginRequestPacket);
+        ByteBuf byteBuf = packetCodeC.encode(ByteBufAllocator.DEFAULT, loginRequestPacket);
         Packet decodedPacket = packetCodeC.decode(byteBuf);
 
         Assert.assertArrayEquals(serializer.serialize(loginRequestPacket), serializer.serialize(decodedPacket));

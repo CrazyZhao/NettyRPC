@@ -52,7 +52,7 @@ public class NettyClient {
                     @Override
                     public void initChannel(SocketChannel ch) {
                         // 指定连接数据读写逻辑
-                        ch.pipeline().addLast(new FirstClientHandler());
+                        ch.pipeline().addLast(new ClientHandler());
                     }
                 });
         // 4.建立连接

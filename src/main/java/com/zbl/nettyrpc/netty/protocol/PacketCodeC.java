@@ -1,5 +1,7 @@
 package com.zbl.nettyrpc.netty.protocol;
 
+import com.zbl.nettyrpc.netty.protocol.request.LoginRequestPacket;
+import com.zbl.nettyrpc.netty.protocol.response.LoginResponsePacket;
 import com.zbl.nettyrpc.netty.serialize.Serializer;
 import com.zbl.nettyrpc.netty.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
@@ -9,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.zbl.nettyrpc.netty.protocol.Command.LOGIN_REQUEST;
+import static com.zbl.nettyrpc.netty.protocol.Command.LOGIN_RESPONSE;
 
 /**
  * Created by Administrator on 2019/4/25.
@@ -16,21 +19,26 @@ import static com.zbl.nettyrpc.netty.protocol.Command.LOGIN_REQUEST;
 public class PacketCodeC {
 
     private static final int MAGIC_NUMBER = 0x12345678;
+    public static final PacketCodeC INSTANCE = new PacketCodeC();
+
     private static final Map<Byte, Class<? extends Packet>> packetTypeMap;
     private static final Map<Byte, Serializer> serializerMap;
 
     static {
         packetTypeMap = new HashMap<>();
+        //指令对应的数据对象类型
         packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
+        packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
 
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
+        //序列化算法
         serializerMap.put(serializer.getSerializerAlogrithm(), serializer);
     }
 
-    public ByteBuf encode(Packet packet) {
-        // 1. 创建 ByteBuf 对象
-        ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
+    public ByteBuf encode(ByteBufAllocator byteBufAllocator, Packet packet) {
+        // 1. 创建 ByteBuf 对象 (根据byteBufAllocator参数获取与当前连接相关的ByteBuf分配器)
+        ByteBuf byteBuf = byteBufAllocator.ioBuffer();
         // 2. 序列化 java 对象
         byte[] bytes = Serializer.DEFAULT.serialize(packet);
 
