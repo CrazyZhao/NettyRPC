@@ -7,9 +7,7 @@ import com.zbl.nettyrpc.dao.entity.OrderFundDetailENT;
 import com.zbl.nettyrpc.utils.WhereUtils;
 import org.springframework.stereotype.Repository;
 
-/**
- * @author zhuxinhai
- */
+
 @Repository("orderFundDetailDao")
 public class OrderFundDetailDaoImpl extends BaseDao<OrderFundDetailENT> implements OrderFundDetailDao {
 

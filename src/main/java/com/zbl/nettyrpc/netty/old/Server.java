@@ -1,4 +1,4 @@
-package com.zbl.nettyrpc.netty;
+package com.zbl.nettyrpc.netty.old;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

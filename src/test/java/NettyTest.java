@@ -1,4 +1,4 @@
-import com.zbl.nettyrpc.netty.ServerHandler;
+import com.zbl.nettyrpc.netty.old.ServerHandler;
 
 public class NettyTest {
 

@@ -1,4 +1,4 @@
-package com.zbl.nettyrpc.netty;
+package com.zbl.nettyrpc.netty.old;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
