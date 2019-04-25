@@ -31,5 +31,6 @@ public class PacketCodeCTest {
 
         Assert.assertArrayEquals(serializer.serialize(loginRequestPacket), serializer.serialize(decodedPacket));
 
+
     }
 }
