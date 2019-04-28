@@ -1,7 +1,9 @@
 package com.zbl.nettyrpc.netty.protocol;
 
 import com.zbl.nettyrpc.netty.protocol.request.LoginRequestPacket;
+import com.zbl.nettyrpc.netty.protocol.request.MessageRequestPacket;
 import com.zbl.nettyrpc.netty.protocol.response.LoginResponsePacket;
+import com.zbl.nettyrpc.netty.protocol.response.MessageResponsePacket;
 import com.zbl.nettyrpc.netty.serialize.Serializer;
 import com.zbl.nettyrpc.netty.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
@@ -10,8 +12,7 @@ import io.netty.buffer.ByteBufAllocator;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.zbl.nettyrpc.netty.protocol.Command.LOGIN_REQUEST;
-import static com.zbl.nettyrpc.netty.protocol.Command.LOGIN_RESPONSE;
+import static com.zbl.nettyrpc.netty.protocol.Command.*;
 
 /**
  * Created by Administrator on 2019/4/25.
@@ -29,6 +30,8 @@ public class PacketCodeC {
         //指令对应的数据对象类型
         packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
         packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
+        packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
+        packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
 
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
