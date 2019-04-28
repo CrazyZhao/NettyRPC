@@ -41,7 +41,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
             }
 
             //登陆响应
-            ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode(ctx.alloc(), loginResponsePacket);
+            ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode0(ctx.alloc(), loginResponsePacket);
             ctx.channel().writeAndFlush(responseByteBuf);
         } else if (packet instanceof MessageRequestPacket){
             // 处理消息
@@ -51,7 +51,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
             // 服务端回复消息
             MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
             messageResponsePacket.setMessage("服务端回复【" + messageRequestPacket.getMessage() + "】");
-            ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode(ctx.alloc(), messageResponsePacket);
+            ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode0(ctx.alloc(), messageResponsePacket);
             ctx.channel().writeAndFlush(responseByteBuf);
         }
 

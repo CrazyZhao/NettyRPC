@@ -1,5 +1,9 @@
 package com.zbl.nettyrpc.netty.client;
 
+import com.zbl.nettyrpc.netty.client.handler.LoginResponseHandler;
+import com.zbl.nettyrpc.netty.client.handler.MessageResponseHandler;
+import com.zbl.nettyrpc.netty.codec.PacketDecoder;
+import com.zbl.nettyrpc.netty.codec.PacketEncoder;
 import com.zbl.nettyrpc.netty.protocol.PacketCodeC;
 import com.zbl.nettyrpc.netty.protocol.request.MessageRequestPacket;
 import com.zbl.nettyrpc.netty.util.LoginUtil;
@@ -59,7 +63,12 @@ public class NettyClient {
                     @Override
                     public void initChannel(SocketChannel ch) {
                         // 指定连接数据读写逻辑
-                        ch.pipeline().addLast(new ClientHandler());
+                        //ch.pipeline().addLast(new ClientHandler());
+                        ch.pipeline().addLast(new PacketDecoder());
+                        ch.pipeline().addLast(new LoginResponseHandler());
+                        ch.pipeline().addLast(new MessageResponseHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
+
                     }
                 });
         // 4.建立连接
@@ -100,7 +109,7 @@ public class NettyClient {
 
                     MessageRequestPacket packet = new MessageRequestPacket();
                     packet.setMessage(line);
-                    ByteBuf byteBuf = PacketCodeC.INSTANCE.encode(channel.alloc(), packet);
+                    ByteBuf byteBuf = PacketCodeC.INSTANCE.encode0(channel.alloc(), packet);
                     channel.writeAndFlush(byteBuf);
                 }
             }

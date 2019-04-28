@@ -1,5 +1,9 @@
 package com.zbl.nettyrpc.netty.server;
 
+import com.zbl.nettyrpc.netty.codec.PacketDecoder;
+import com.zbl.nettyrpc.netty.codec.PacketEncoder;
+import com.zbl.nettyrpc.netty.server.handler.LoginRequestHandler;
+import com.zbl.nettyrpc.netty.server.handler.MessageRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
@@ -25,7 +29,12 @@ public class NettyServer {
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
-                        ch.pipeline().addLast(new ServerHandler());
+                        //ch.pipeline().addLast(new ServerHandler());
+                        ch.pipeline().addLast(new PacketDecoder());
+                        ch.pipeline().addLast(new LoginRequestHandler());
+                        ch.pipeline().addLast(new MessageRequestHandler());
+                        ch.pipeline().addLast(new PacketEncoder());
+
                         /*ch.pipeline().addLast(new StringDecoder());
                         ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
                             @Override
